@@ -83,13 +83,13 @@ Follow these steps to run the project locally.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/imaninaitore/bridgeview-university-portal.git
+git clone https://github.com/imaninaitore/Bridgeview-university-portal.git
 ```
 
 2. Navigate into the project directory:
 
 ```bash
-cd bridgeview-university-portal
+cd Bridgeview-university-portal
 ```
 
 3. Install dependencies:
