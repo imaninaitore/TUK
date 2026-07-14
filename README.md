@@ -1,96 +1,146 @@
-# Technical University of Kenya (TUK) Website Redesign
+# Bridgeview University Admissions & Student Portal
 
-A clean, modern, and fully responsive frontend web application for the Technical University of Kenya (TUK), built using modern web development standards.
+A modern, responsive frontend web application for Bridgeview University, built using React and modern web development technologies.
 
-##  Overview
+## Overview
 
-This project is a visual and structural redesign of the official TUK website. The goal of this trial is to improve upon the existing platform by updating its layout, ensuring mobile responsiveness, and creating a smoother, single-page application experience.
+Bridgeview University Admissions & Student Portal is a modern web application that combines the university's public website with an online admissions system. Prospective students can explore academic programs, submit applications, and track their admission status, while administrators can review and manage applications through a dedicated dashboard.
 
-## ✨ Features Built & Restructured
+## ✨ Features Built
 
-### Public Landing & Informational Pages
-*   **Dynamic Homepage:** Features an active hero section, quick-link banners, upcoming campus events, and an official notice board.
-*   **About TUK Hub:** Reorganized institutional history, mission statement, philosophy, and university leadership profiles.
-*   **Academics & Faculties:** Clear grid layout sorting the various Faculties (e.g., FAST, FEBE, FSST) and their respective departments.
-*   **Admissions Guide:** A step-by-step layout explaining application procedures, entry requirements, and fee structures for prospective students.
+### Public Pages
 
-###  Specialized User Portals (Frontend Layouts)
-*   **Student Portal Interface:** Clean dashboards for hypothetical course registration, timetable viewing, and exam result tracking.
-*   **Staff Portal Interface:** A clean dashboard concept for faculty member management and internal communication.
+- Home
+- About
+- Faculties
+- Programs
+- Admissions
+- Scholarships
+- Contact
+- FAQ
+- Login
+- Register
 
-* Search Functionality:** Implement a client-side search bar to scan through listed courses and documents.
-###  UI/UX Enhancements
-*   **Instant Client-Side Navigation:** Zero page-refresh lags when moving between university modules.
-*   **Utility-First Styling:** Clean UI using custom Tailwind color configurations matching official university branding.
-*   **Intuitive Mobile Menu:** A fully animated, thumb-friendly navigation drawer optimized for mobile users.
-*   **Accessible Typography:** Clear hierarchy and high-contrast color choices to improve general readability.
+### Applicant Portal
 
-* Dark Mode Toggle:** Provide a high-contrast dark theme option for late-night student browsing.
+Applicants can:
+
+- Access a personalized dashboard
+- Start a new application
+- Continue incomplete applications
+- Upload supporting documents (Mock)
+- Track application status
+- Receive application notifications
+- View application history
+- Manage their profile
+
+### Admin Dashboard
+
+Administrators can:
+
+- View all submitted applications
+- Review applicant details
+- Accept or reject applications
+- Manage academic programs
+- View application statistics
+
+### University Website
+
+The public website includes:
+
+- Responsive homepage featuring university highlights and announcements
+- Faculty and program directory
+- Admissions guide with application requirements
+- Scholarship information
+- Frequently Asked Questions
+- Contact page
+- Client-side search for academic programs
+
+### UI/UX Features
+
+- Responsive design for desktop, tablet, and mobile devices
+- Client-side routing using React Router
+- Modern interface built with Tailwind CSS
+- Dark Mode support
+- Reusable React components
+- Interactive dashboards
+- Accessible and intuitive navigation
 
 ## Tech Stack
 
-*   **Frontend Library:** React
-*   **Build Tool:** Vite
-*   **Styling:** Tailwind CSS and lucide icons
-*   **Routing:** React Router (v6)
+- **Frontend Library:** React
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Routing:** React Router v6
 
 ## Getting Started
 
-Follow these steps to run the project locally on your machine.
+Follow these steps to run the project locally.
 
 ### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/imaninaitore/TUK.git
-   ```
 
-2. Open the project folder:
-   ```bash
-   cd TUK
-   ```
+```bash
+git clone https://github.com/imaninaitore/bridgeview-university-portal.git
+```
 
-3. Install the dependencies:
-   ```bash
-   npm install
-   ```
+2. Navigate into the project directory:
+
+```bash
+cd bridgeview-university-portal
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
 
 ### Running the Project
 
-Start the local development server:
+Start the development server:
+
 ```bash
 npm run dev
 ```
 
-Once running, open your browser and go to `http://localhost:5173` to view the website.
+Once the server is running, open your browser and visit:
+
+```
+http://localhost:5173
+```
 
 ## 📂 Project Structure
 
 ```text
 ├── src/
-│   ├── assets/          # Images, official logos, and campus icons
-│   ├── components/      # Reusable UI pieces (Navbar, Footer, FacultyCards)
-│   ├── pages/           # Routed views (Home, About, Admissions, Portals)
-│   ├── App.jsx          # Router setup and global layout wrapper
-│   ├── index.css        # Tailwind CSS directives and global typography overrides
-│   └── main.jsx         # The entry point that mounts our React application
+│   ├── assets/          # Images, logos, and icons
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Routed application pages
+│   ├── context/         # Authentication and Theme Context
+│   ├── data/            # Mock JSON data
+│   ├── App.jsx          # Route configuration
+│   ├── main.jsx         # Application entry point
+│   └── index.css        # Global styles
 ```
 
-##  Future Scope & Extensions
-*   **Backend Integration:** Connect to a Node.js/Express API or Firebase for real student authentication.
+## Future Improvements
 
-##  Asset Attributions
-*   **Logos & Branding:** All official Technical University of Kenya logos and media materials belong strictly to TUK.
-*   **Icons:** Provided by Lucide React
+- Backend integration for authentication and application management
+- Real document uploads
+- Email notifications
+- Online application fee payment
+- Interview scheduling
+- Real-time application status updates
+- Student portal expansion
+- Role-based authentication and authorization
 
-## ✍️ Author
+## Author
 
-*   **Imani Naitore** 
+**Imani Naitore**
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
-
-## ⚖️ Disclaimer
-
-This project is an independent trial and a personal design proposal. It is not officially affiliated with, commissioned by, or endorsed by the Technical University of Kenya administration.
