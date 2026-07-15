@@ -121,7 +121,11 @@ const Login = () => {
           </div>
 
           {/* Login Button */}
-
+          {errorMessage && (
+    <p className="text-red-600 text-sm">
+        {errorMessage}
+    </p>
+      )}
           <button
            type="submit" 
            className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl transition duration-300 font-medium">
