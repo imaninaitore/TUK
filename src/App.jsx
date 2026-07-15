@@ -7,12 +7,15 @@ import { Route,Routes } from 'react-router'
 function App() {
   return (
     <>
-    <Navbar/>
-    <Header/>
-
     <Routes>
+       <Route path="/" element={
+          <>
+            <Navbar />
+            <Header />
+          </>
+        }/>
+        
        <Route path="/StudyLevel" element={<StudyLevel />} />
-
     </Routes>
     </>
 
