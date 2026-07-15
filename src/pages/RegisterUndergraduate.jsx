@@ -1,29 +1,44 @@
-import React from 'react'
-import { Link,useNavigate,Navigate } from 'react-router';
-import { useAuth } from '@/context/AuthContext';
-import { doCreateUserWithEmailAndPassword, doSignInUserWithEmailAndPassword } from '@/firebase/auth';
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
+function RegisterUndergraduate() {
+  const navigate = useNavigate();
+  const { register, userLoggedIn } = useAuth();
 
-const RegisterUndergraduate = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const navigate = useNavigate()
-
-  const[email,setEmail] = useState('')
-  const[password,setPassword] = useState('')
-  const[confirmPassword,setConfirmPassword] = useState('')
-  const[isRegistering,setIsRegistering] = useState(false)
-  const[errorMessage,setErrorMessage] = useState('')
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (e) => {
-    e.preventDefault()
-    if(!isRegistering){
-      setIsRegistering(true)
-      await doSignInUserWithEmailAndPassword(email,password)
+    e.preventDefault();
+
+    if (isRegistering) return;
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
     }
+
+    setErrorMessage("");
+    setIsRegistering(true);
+
+    try {
+      await register(email, password);
+      navigate("/home");
+    } catch (error) {
+      setErrorMessage(error.message);
+      setIsRegistering(false);
+    }
+  };
+
+  if (userLoggedIn) {
+    return <Navigate to="/home" replace />;
   }
 
   return (
-    {userLoggedIn && (<Navigate to={'/home'} replace{true}/>)}
        <div className="min-h-screen bg-slate-100 flex items-center justify-center px-6 py-12">
 
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10">
@@ -49,7 +64,9 @@ const RegisterUndergraduate = () => {
 
         {/* Form */}
 
-        <form className="mt-10 space-y-6">
+        <form 
+        onSubmit={onSubmit}
+        className="mt-10 space-y-6">
 
           {/* Name */}
 
@@ -91,8 +108,9 @@ const RegisterUndergraduate = () => {
             <input
               type="email"
               placeholder="example@email.com"
+              value={email}
               onChange={(event)=> {
-                  setRegisterEmail(event.target.value);
+                  setEmail(event.target.value);
                 }}
               className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
@@ -162,8 +180,9 @@ const RegisterUndergraduate = () => {
 
               <input
                 type="password"
+                value={password}
                 onChange={(event)=> {
-                  setRegisterPassword(event.target.value);
+                  setPassword(event.target.value);
                 }}
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
@@ -176,6 +195,9 @@ const RegisterUndergraduate = () => {
 
               <input
                 type="password"
+                 value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             </div>
@@ -192,12 +214,22 @@ const RegisterUndergraduate = () => {
 
           </label>
 
-          {/* Button */}
+            {/* Error Message */}
 
-          <button 
-          onClick={register}
-          className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl transition">
-            Create Applicant Account
+          {errorMessage && (
+            <p className="text-red-500 text-sm">{errorMessage}</p>
+          )}
+
+          {/* Submit Button */}
+
+          <button
+            type="submit"
+            disabled={isRegistering}
+            className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-500 text-white py-3 rounded-xl transition"
+          >
+            {isRegistering
+              ? "Creating Account..."
+              : "Create Applicant Account"}
           </button>
 
         </form>
