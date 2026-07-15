@@ -1,20 +1,27 @@
 import { Link, Navigate } from "react-router";
-import { doSignInWithEmailAndPassword,doSignInWithGoogle } from "@/firebase/auth";
+//import { doSignInWithEmailAndPassword,doSignInWithGoogle } from "@/firebase/auth";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
-
+const {userLoggedIn,login} = useAuth('');
 const Login = () => {
   const { userLoggedIn } = useAuth('')
   const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
   const [isSigningIn, setIsSigningIn] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if(!isSigningIn ){
-      setIsSigningIn(true)
-      await doSignInWithEmailAndPassword(email, password)
+    if(!isSigningIn ) return;
+      setIsSigningIn(true);
+
+    try {
+        await login(email, password);
+    } catch (error) {
+        setErrorMessage(error.message);
+        setIsSigningIn(false);
     }
+    
   }
   const onGoogleSign =(e) => {
     e.preventDefault()
@@ -52,7 +59,7 @@ const Login = () => {
 
         {/* Form */}
 
-        <form className="mt-10 space-y-6">
+        <form onSubmit={onSubmit} className="mt-10 space-y-6">
 
           {/* Email */}
 
@@ -66,7 +73,7 @@ const Login = () => {
               type="email"
               placeholder="Enter your email"
               onChange={(event)=> {
-                  setLoginEmail(event.target.value);
+                  setEmail(event.target.value);
                 }}
               className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
@@ -85,7 +92,7 @@ const Login = () => {
               type="password"
               placeholder="Enter your password"
               onChange={(event)=> {
-                  setLoginPassword(event.target.value);
+                  setPassword(event.target.value);
                 }}
               className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
@@ -115,8 +122,10 @@ const Login = () => {
 
           {/* Login Button */}
 
-          <button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl transition duration-300 font-medium">
-
+          <button
+           type="submit" 
+           className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl transition duration-300 font-medium">
+           {isSigningIn ? "Signing In..." : "Sign In"}
             Sign In
 
           </button>
