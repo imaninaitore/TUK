@@ -33,9 +33,13 @@ async function initializeUser(user){
     }
     setLoading(false);
 }
-
+//register
 async function register(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
+}
+//login
+async function login(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
 }
 
 const value = {
