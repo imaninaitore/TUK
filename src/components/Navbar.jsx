@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "@/assets/logo.png"
+import logo from "@/assets/shield-logo.png"
+import { Link } from "react-router";
 
 const Navbar = () => {
   return (
@@ -41,7 +42,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="Bridgeview logo"
-                className="h-14 w-auto"
+                className="h-20 w-auto"
               />
 
               <div>
@@ -102,7 +103,9 @@ const Navbar = () => {
 
             {/* Apply Button */}
             <div className="p-3">
-           <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition">Apply→</button>
+              <Link to={'/StudyLevel'}>  
+               <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition">Apply→</button>
+              </Link>
             </div>
 
           </div>
