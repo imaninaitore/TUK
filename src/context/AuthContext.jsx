@@ -42,11 +42,19 @@ async function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
+//logout
+async function logout() {
+  return signOut(auth);
+}
+
 const value = {
     currentUser,
     userLoggedIn,
-    loading
-}
+    loading,
+    register,
+    login,
+    logout,
+};
 
 return(
     <AuthContext.Provider value={value}>
