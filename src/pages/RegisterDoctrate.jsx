@@ -1,7 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router'
+import { Link, Navigate, useNavigate } from "react-router";
+import { useAuth } from "@/context/AuthContext";
+import React,{useState} from "react";
 
 function RegisterDoctrate() {
+const navigate = useNavigate();
+  const { register, userLoggedIn } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    if (isRegistering) return;
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
+    setErrorMessage("");
+    setIsRegistering(true);
+
+    try {
+      await register(email, password);
+      navigate("/home");
+    } catch (error) {
+      setErrorMessage(error.message);
+      setIsRegistering(false);
+    }
+  };
+
+  if (userLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
  <div className="min-h-screen bg-slate-100 flex items-center justify-center px-6 py-12">
 
@@ -16,7 +53,7 @@ function RegisterDoctrate() {
           </p>
 
           <h1 className="mt-2 text-4xl font-bold text-slate-900">
-            Doctrate Admissions
+            Postgraduate Admissions
           </h1>
 
           <p className="mt-4 text-slate-600">
@@ -28,7 +65,9 @@ function RegisterDoctrate() {
 
         {/* Form */}
 
-        <form className="mt-10 space-y-6">
+        <form 
+        onSubmit={onSubmit}
+        className="mt-10 space-y-6">
 
           {/* Name */}
 
@@ -70,6 +109,11 @@ function RegisterDoctrate() {
             <input
               type="email"
               placeholder="example@email.com"
+              value={email}
+              onChange={(event)=> {
+                  setEmail(event.target.value);
+                }}
+                required
               className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
           </div>
@@ -138,6 +182,11 @@ function RegisterDoctrate() {
 
               <input
                 type="password"
+                value={password}
+              onChange={(event)=> {
+                  setPassword(event.target.value);
+                }}
+                required
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             </div>
@@ -149,6 +198,9 @@ function RegisterDoctrate() {
 
               <input
                 type="password"
+                 value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             </div>
@@ -165,12 +217,23 @@ function RegisterDoctrate() {
 
           </label>
 
-          {/* Button */}
+           {/* Error Message */}
 
-          <button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl transition">
+          {errorMessage && (
+            <p className="text-red-500 text-sm">{errorMessage}</p>
+          )}
 
-            Create Applicant Account
+          
+          {/* Submit Button */}
 
+          <button
+            type="submit"
+            disabled={isRegistering}
+            className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-500 text-white py-3 rounded-xl transition"
+          >
+            {isRegistering
+              ? "Creating Account..."
+              : "Create Applicant Account"}
           </button>
 
         </form>
@@ -192,7 +255,8 @@ function RegisterDoctrate() {
 
       </div>
 
-    </div>  )
+    </div>
+)
 }
 
 export default RegisterDoctrate

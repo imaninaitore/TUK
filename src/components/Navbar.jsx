@@ -4,7 +4,10 @@ import { Link, useNavigate } from "react-router";
 import { doSignOut } from "@/firebase/auth";
 import { useAuth } from "@/context/AuthContext";
 
+
 const Navbar = () => {
+const { currentUser } = useAuth();
+
   const navigate = useNavigate()
   const {userLoggedIn,logout} = useAuth()
 
@@ -131,6 +134,11 @@ logout
 
         </div>
 
+{/* {currentUser && (
+  <span className="text-slate-700 font-medium">
+    Welcome, {currentUser.email}
+  </span>
+)} */}
       </nav>
   );
 };

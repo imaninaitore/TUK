@@ -1,33 +1,35 @@
 import { Link, Navigate, useNavigate } from "react-router";
-import { useAuth } from "@/context/AuthContext";
-import React,{useState} from "react";
+import { useAuth } from "@/context/AuthContext"; //custom authentication hook
+import React,{useState} from "react";//remember info
 
 function RegisterUndergraduate() {
-  const navigate = useNavigate();
-  const { register, userLoggedIn } = useAuth();
+  const navigate = useNavigate(); //navigation function
+  const { register, userLoggedIn } = useAuth(); //destructuring authcontext
 
+  //store whatever the user types
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  //loading state sort of like the process from before start , start to finish
   const [isRegistering, setIsRegistering] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (e) => { //function to wait for firebase and event register
+    e.preventDefault();//!refresh
 
     if (isRegistering) return;
-
+//check
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match.");
       return;
     }
 
-    setErrorMessage("");
-    setIsRegistering(true);
+    setErrorMessage(""); //clear previous
+    setIsRegistering(true);//start registering
 
-    try {
-      await register(email, password);
+    try { //tryblock - i see this as a test
+      await register(email, password); //makes wait for firebase to pick
       navigate("/home");
     } catch (error) {
       setErrorMessage(error.message);
@@ -36,7 +38,7 @@ function RegisterUndergraduate() {
   };
 
   if (userLoggedIn) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (
