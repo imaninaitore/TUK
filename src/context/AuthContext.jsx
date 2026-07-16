@@ -1,11 +1,14 @@
 import React, { useContext,useEffect, useState } from "react";
-import {auth} from "@/firebase/firebase"
+import {auth} from "@/firebase/firebase" //my authentication assistant
+
 import { 
     onAuthStateChanged,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut
  } from "firebase/auth";
+
+ const ADMIN_EMAIL = "anna.imaninaitore1726@gmail.com";
 
 const AuthContext = React.createContext();
 
@@ -17,7 +20,7 @@ export function AuthProvider({children}) {
     const[currentUser,setCurrentUser] = useState(null);
     const[userLoggedIn,setUserLoggedIn] = useState(false);
     const[loading,setLoading] = useState(true);
-
+    const isAdmin = currentUser?.email === ADMIN_EMAIL;
 useEffect(() =>{
     const unsubscribe = onAuthStateChanged(auth, initializeUser);
     return unsubscribe;
@@ -51,6 +54,7 @@ const value = {
     currentUser,
     userLoggedIn,
     loading,
+    isAdmin,
     register,
     login,
     logout,
