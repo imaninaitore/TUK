@@ -115,15 +115,18 @@ const Navbar = () => {
 
             </ul>
 
-            {/* Apply Button */}
-            <div className="p-3">
-              <Link to={'/StudyLevel'}>  
-               <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition">Apply→</button>
-              </Link>
-            </div>
+            
 
-         <button onClick={() => {doSignOut().then(() => {navigate('/login') }) }}>log out</button>
-         
+{userLoggedIn ? (
+  <button onClick={handleLogout}
+ className="ml-3 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition" >
+logout
+  </button>
+):(
+     <Link to={'/StudyLevel'}>  
+         <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition">Apply→</button>
+     </Link>
+)}         
         </div>
 
         </div>
