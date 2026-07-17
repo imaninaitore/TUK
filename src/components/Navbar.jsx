@@ -6,10 +6,9 @@ import { useAuth } from "@/context/AuthContext";
 
 
 const Navbar = () => {
-const { currentUser } = useAuth();
 
   const navigate = useNavigate()
-  const {userLoggedIn,logout} = useAuth()
+  const {currentUser,userLoggedIn,logout,isAdmin} = useAuth()
 
   const handleLogout = async ()=> {
    try {
@@ -121,24 +120,49 @@ const { currentUser } = useAuth();
             
 
 {userLoggedIn ? (
-  <button onClick={handleLogout}
- className="ml-3 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition" >
-logout
-  </button>
-):(
-     <Link to={'/StudyLevel'}>  
-         <button className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition">Apply→</button>
-     </Link>
-)}         
-        </div>
+  <div className="flex items-center gap-4">
 
-        </div>
+    <div className="text-right">
 
-{/* {currentUser && (
-  <span className="text-slate-700 font-medium">
-    Welcome, {currentUser.email}
-  </span>
-)} */}
+      <p className="font-semibold text-[#0B1F3A]">
+        {currentUser?.email.split("@")[0]}
+      </p>
+
+      {isAdmin && (
+        <span className="text-xs bg-[#D4AF37] text-[#0B1F3A] px-2 py-1 rounded-full">
+          Administrator
+        </span>
+      )}
+
+    </div>
+
+    {isAdmin && (
+      <Link
+        to="/admin"
+        className="bg-[#0B1F3A] text-white px-4 py-2 rounded-lg hover:bg-[#12355B] transition"
+      >
+        Dashboard
+      </Link>
+    )}
+
+    <button
+      onClick={handleLogout}
+      className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+    >
+      Logout
+    </button>
+
+  </div>
+) : (
+  <Link
+    to="/StudyLevel"
+    className="bg-[#D4AF37] text-[#0B1F3A] px-5 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition"
+  >
+    Apply →
+  </Link>
+)}   
+        </div>
+        </div>
       </nav>
   );
 };
