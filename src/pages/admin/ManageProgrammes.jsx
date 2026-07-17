@@ -302,15 +302,30 @@ const handleSubmit = async (e) => {
           className="w-full border rounded-lg p-3"
         />
 
-        <input
-          type="text"
-          name="faculty"
-          placeholder="Faculty"
-          value={formData.faculty}
-          onChange={handleChange}
-          className="w-full border rounded-lg p-3"
-          required
-        />
+<select
+  value={formData.facultySlug}
+  onChange={(e) => {
+    const selectedFaculty = faculties.find(
+      (faculty) => faculty.slug === e.target.value
+    );
+
+    setFormData({
+      ...formData,
+      faculty: selectedFaculty.name,
+      facultySlug: selectedFaculty.slug,
+    });
+  }}
+  className="w-full border rounded-lg p-3"
+>
+  <option value="">Select Faculty</option>
+
+  {faculties.map((faculty) => (
+    <option key={faculty.slug} value={faculty.slug}>
+      {faculty.name}
+    </option>
+  ))}
+</select>
+
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
