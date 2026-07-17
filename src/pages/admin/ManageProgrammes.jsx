@@ -1,15 +1,24 @@
+import { useState } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { useProgrammes } from "@/context/ProgrammeContext";
 
 const ManageProgrammes = () => {
-  return (
-    <AdminLayout title="Manage Programmes">
+  const {
+    programmes,
+    deleteProgramme,
+  } = useProgrammes();
 
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <AdminLayout>
       {/* Header */}
 
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-5 mb-8">
 
         <div>
+
           <h1 className="text-3xl font-bold text-[#0A2342]">
             Manage Programmes
           </h1>
@@ -17,9 +26,13 @@ const ManageProgrammes = () => {
           <p className="text-slate-500 mt-1">
             Add, edit and manage all university programmes.
           </p>
+
         </div>
 
-        <button className="flex items-center gap-2 bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-semibold px-5 py-3 rounded-xl transition">
+        <button
+          onClick={() => setShowModal(true)}
+          className="flex items-center gap-2 bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-semibold px-5 py-3 rounded-xl transition"
+        >
 
           <Plus size={20} />
 
@@ -49,7 +62,7 @@ const ManageProgrammes = () => {
 
       {/* Table */}
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
 
         <table className="w-full">
 
@@ -57,15 +70,25 @@ const ManageProgrammes = () => {
 
             <tr>
 
-              <th className="p-4 text-left">Programme</th>
+              <th className="p-4 text-left">
+                Programme
+              </th>
 
-              <th className="p-4 text-left">Faculty</th>
+              <th className="p-4 text-left">
+                Faculty
+              </th>
 
-              <th className="p-4 text-left">Level</th>
+              <th className="p-4 text-left">
+                Level
+              </th>
 
-              <th className="p-4 text-left">Duration</th>
+              <th className="p-4 text-left">
+                Duration
+              </th>
 
-              <th className="p-4 text-center">Actions</th>
+              <th className="p-4 text-center">
+                Actions
+              </th>
 
             </tr>
 
@@ -73,139 +96,131 @@ const ManageProgrammes = () => {
 
           <tbody>
 
-            <tr className="border-b hover:bg-slate-50">
+            {programmes.length === 0 ? (
 
-              <td className="p-5 flex items-center gap-4">
+              <tr>
 
-                <img
-                  src="https://placehold.co/70x70"
-                  alt=""
-                  className="rounded-lg"
-                />
+                <td
+                  colSpan="5"
+                  className="text-center py-10 text-slate-500"
+                >
 
-                <div>
+                  No programmes added yet.
 
-                  <h3 className="font-semibold">
-                    Bachelor of Computer Science
-                  </h3>
+                </td>
 
-                  <p className="text-sm text-slate-500">
-                    BSc Computer Science
-                  </p>
+              </tr>
 
-                </div>
+            ) : (
 
-              </td>
+              programmes.map((programme) => (
 
-              <td className="p-5">
+                <tr
+                  key={programme.id}
+                  className="border-b hover:bg-slate-50"
+                >
 
-                School of Computing
+                  <td className="p-5">
 
-              </td>
+                    <h3 className="font-semibold">
 
-              <td className="p-5">
+                      {programme.name}
 
-                Undergraduate
+                    </h3>
 
-              </td>
+                    <p className="text-sm text-slate-500">
 
-              <td className="p-5">
+                      {programme.code}
 
-                4 Years
+                    </p>
 
-              </td>
+                  </td>
 
-              <td className="p-5">
+                  <td className="p-5">
 
-                <div className="flex justify-center gap-3">
+                    {programme.faculty}
 
-                  <button className="bg-blue-100 hover:bg-blue-200 text-blue-700 p-3 rounded-lg">
+                  </td>
 
-                    <Pencil size={18} />
+                  <td className="p-5">
 
-                  </button>
+                    {programme.level}
 
-                  <button className="bg-red-100 hover:bg-red-200 text-red-600 p-3 rounded-lg">
+                  </td>
 
-                    <Trash2 size={18} />
+                  <td className="p-5">
 
-                  </button>
+                    {programme.duration}
 
-                </div>
+                  </td>
 
-              </td>
+                  <td className="p-5">
 
-            </tr>
+                    <div className="flex justify-center gap-3">
 
-            <tr className="border-b hover:bg-slate-50">
+                      <button
+                        className="bg-blue-100 hover:bg-blue-200 text-blue-700 p-3 rounded-lg"
+                      >
 
-              <td className="p-5 flex items-center gap-4">
+                        <Pencil size={18} />
 
-                <img
-                  src="https://placehold.co/70x70"
-                  alt=""
-                  className="rounded-lg"
-                />
+                      </button>
 
-                <div>
+                      <button
+                        onClick={() => deleteProgramme(programme.id)}
+                        className="bg-red-100 hover:bg-red-200 text-red-600 p-3 rounded-lg"
+                      >
 
-                  <h3 className="font-semibold">
-                    Bachelor of Nursing
-                  </h3>
+                        <Trash2 size={18} />
 
-                  <p className="text-sm text-slate-500">
-                    BSc Nursing
-                  </p>
+                      </button>
 
-                </div>
+                    </div>
 
-              </td>
+                  </td>
 
-              <td className="p-5">
+                </tr>
 
-                School of Health Sciences
+              ))
 
-              </td>
-
-              <td className="p-5">
-
-                Undergraduate
-
-              </td>
-
-              <td className="p-5">
-
-                4 Years
-
-              </td>
-
-              <td className="p-5">
-
-                <div className="flex justify-center gap-3">
-
-                  <button className="bg-blue-100 hover:bg-blue-200 text-blue-700 p-3 rounded-lg">
-
-                    <Pencil size={18} />
-
-                  </button>
-
-                  <button className="bg-red-100 hover:bg-red-200 text-red-600 p-3 rounded-lg">
-
-                    <Trash2 size={18} />
-
-                  </button>
-
-                </div>
-
-              </td>
-
-            </tr>
+            )}
 
           </tbody>
 
         </table>
 
       </div>
+
+      {/* Modal */}
+
+      {showModal && (
+
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+          <div className="bg-white rounded-2xl p-8 w-full max-w-2xl">
+
+            <h2 className="text-2xl font-bold mb-6">
+
+              Add Programme
+
+            </h2>
+
+            {/* FORM COMES HERE */}
+
+            <button
+              onClick={() => setShowModal(false)}
+              className="mt-6 bg-gray-200 px-5 py-2 rounded-lg"
+            >
+
+              Close
+
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </AdminLayout>
   );
