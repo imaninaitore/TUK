@@ -5,6 +5,7 @@ import facaulty3 from '@/assets/facaultyImages/business.jpg'
 import facaulty4 from '@/assets/facaultyImages/health.jpg'
 import facaulty5 from '@/assets/facaultyImages/law.jpg'
 import facaulty6 from '@/assets/facaultyImages/arts.jpg'
+import { Link } from "react-router";
 
 const faculties = [
   {
@@ -64,6 +65,7 @@ function Faculties() {
         </div>
 
         {/* Faculty Cards */}
+        <Link to={`/faculties/${faculty.slug}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
           {faculties.map((faculty, index) => (
@@ -94,7 +96,7 @@ function Faculties() {
           ))}
 
         </div>
-
+     </Link>
       </div>
     </section>
   );
