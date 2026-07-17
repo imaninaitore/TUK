@@ -14,7 +14,11 @@ function FacultyProgrammes() {
     );
   }
 
-  
+   const filteredProgrammes = programmes.filter(
+    (programme) =>
+      programme.faculty.toLowerCase() ===
+      decodeURIComponent(faculty).toLowerCase()
+  );
   return (
     <div>
 
