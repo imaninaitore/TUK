@@ -13,6 +13,13 @@ import { useAuth } from "@/context/AuthContext";
 import { Navigate } from 'react-router'
 import { Route,Routes } from 'react-router'
 import MainLayout from './layout/MainLayout'
+import Dashboard from "./pages/admin/Dashboard";
+import ManageProgrammes from "./pages/admin/ManageProgrammes";
+import ManageEvents from "./pages/admin/ManageEvents";
+import ManageHome from "./pages/admin/ManageHome";
+import ManageAnnouncements from "./pages/admin/ManageAnnouncements";
+import ManageContact from "./pages/admin/ManageContact";
+import Applications from "./pages/admin/Applications";
 
 function App() {
   const {isAdmin} = useAuth();
@@ -37,18 +44,59 @@ function App() {
        <Route path="/login" element={<Login/>} /> 
         </Route>
 
-       <Route
+      {/* Admin Routes */}
+  <Route
     path="/admin"
     element={
-        isAdmin
-            ? <AdminDashboard />
-            : <Navigate to="/" replace />
+      isAdmin ? <Dashboard /> : <Navigate to="/login" replace />
     }
-    />
-    </Routes>
-    </>
+  />
 
+  <Route
+    path="/admin/programmes"
+    element={
+      isAdmin ? <ManageProgrammes /> : <Navigate to="/login" replace />
+    }
+  />
 
+  <Route
+    path="/admin/events"
+    element={
+      isAdmin ? <ManageEvents /> : <Navigate to="/login" replace />
+    }
+  />
+
+  <Route
+    path="/admin/homepage"
+    element={
+      isAdmin ? <ManageHome /> : <Navigate to="/login" replace />
+    }
+  />
+
+  <Route
+    path="/admin/contact"
+    element={
+      isAdmin ? <ManageContact /> : <Navigate to="/login" replace />
+    }
+  />
+
+  <Route
+    path="/admin/announcements"
+    element={
+      isAdmin ? <ManageAnnouncements /> : <Navigate to="/login" replace />
+    }
+  />
+
+  <Route
+    path="/admin/applications"
+    element={
+      isAdmin ? <Applications /> : <Navigate to="/login" replace />
+    }
+  />
+   
+  
+</Routes> 
+  </>
   )
 }
 
