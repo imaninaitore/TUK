@@ -9,27 +9,33 @@ import facaulty6 from '@/assets/facaultyImages/arts.jpg'
 const faculties = [
   {
     name: "Faculty of Engineering",
-    image:facaulty1
+    slug:"engineering",
+    image:facaulty1,
   },
   {
     name: "Faculty of Computing",
-    image:facaulty2 
+    slug:"computing",
+    image:facaulty2 ,
   },
   {
     name: "Faculty of Business",
-    image:facaulty3
+     slug:"business",
+    image:facaulty3,
   },
   {
     name: "Faculty of Health Sciences",
-    image:facaulty4
+     slug:"health-sciences",
+    image:facaulty4,
   },
   {
     name: "Faculty of Law",
-    image:facaulty5
+     slug:"law",
+    image:facaulty5,
   },
   {
     name: "Faculty of Arts & Humanities",
-    image:facaulty6
+     slug:"arts-humanities",
+    image:facaulty6,
   },
 ];
 
