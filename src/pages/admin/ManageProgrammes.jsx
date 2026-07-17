@@ -245,6 +245,128 @@ const handleSubmit = async (e) => {
             </h2>
 
             {/* FORM COMES HERE */}
+            <form
+  onSubmit={handleSubmit}
+  className="space-y-4"
+>
+
+  <input
+    type="text"
+    name="name"
+    placeholder="Programme Name"
+    value={formData.name}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+    required
+  />
+
+  <input
+    type="text"
+    name="code"
+    placeholder="Programme Code"
+    value={formData.code}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  />
+
+  <input
+    type="text"
+    name="faculty"
+    placeholder="Faculty"
+    value={formData.faculty}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+    required
+  />
+
+  <select
+    name="level"
+    value={formData.level}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  >
+    <option>Undergraduate</option>
+    <option>Postgraduate</option>
+    <option>Doctorate</option>
+  </select>
+
+  <input
+    type="text"
+    name="duration"
+    placeholder="Duration (e.g. 4 Years)"
+    value={formData.duration}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  />
+
+  <input
+    type="text"
+    name="intake"
+    placeholder="Intake"
+    value={formData.intake}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  />
+
+  <select
+    name="mode"
+    value={formData.mode}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  >
+    <option>Full Time</option>
+    <option>Part Time</option>
+    <option>Online</option>
+  </select>
+
+  <textarea
+    name="description"
+    placeholder="Programme Description"
+    value={formData.description}
+    onChange={handleChange}
+    rows={4}
+    className="w-full border rounded-lg p-3"
+  />
+
+  <textarea
+    name="requirements"
+    placeholder="Admission Requirements"
+    value={formData.requirements}
+    onChange={handleChange}
+    rows={4}
+    className="w-full border rounded-lg p-3"
+  />
+
+  <select
+    name="status"
+    value={formData.status}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  >
+    <option>Open</option>
+    <option>Closed</option>
+  </select>
+
+  <div className="flex justify-end gap-4">
+
+    <button
+      type="button"
+      onClick={() => setShowModal(false)}
+      className="px-5 py-3 rounded-lg bg-gray-200"
+    >
+      Cancel
+    </button>
+
+    <button
+      type="submit"
+      className="px-5 py-3 rounded-lg bg-[#D4AF37] font-semibold text-[#0A2342]"
+    >
+      Save Programme
+    </button>
+
+  </div>
+
+</form>
 
             <button
               onClick={() => setShowModal(false)}
