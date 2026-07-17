@@ -22,9 +22,10 @@ import ManageContact from "./pages/admin/ManageContact";
 import Applications from "./pages/admin/Applications";
 import Programmes from './components/Programmes'
 import FacultyProgrammes from './pages/FacaultyProgrammes'
+import ApplicantDashboard from './pages/ApplicantsDashboard'
 
 function App() {
-  const {isAdmin} = useAuth();
+  const {isAdmin, userLoggedIn} = useAuth();
   return (
     <>
     <Routes>
@@ -98,7 +99,15 @@ function App() {
     }
   />
    
-  
+  {/*registered applicant page */}
+  <Route path="/dashboard" element={
+    userLoggedIn ? (
+      <ApplicantDashboard />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
 </Routes> 
   </>
   )
