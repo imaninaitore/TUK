@@ -13,6 +13,9 @@ import {
   query,
   where,
   serverTimestamp,
+  doc,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const ApplicationContext = createContext();
