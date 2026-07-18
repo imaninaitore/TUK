@@ -30,7 +30,7 @@ import ViewApplication from './pages/admin/ViewAplication'
 
 function App() {
   const {isAdmin, userLoggedIn,currentUser} = useAuth();
-  const{Applications} = useApplications();
+  const{applications} = useApplications();
   return (
     <>
     <Routes>
