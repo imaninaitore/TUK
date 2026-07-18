@@ -1,6 +1,9 @@
+//read the selected programme
 import { useState } from "react";
 import { useParams } from "react-router";
 import { useProgrammes } from "@/context/ProgrammeContext";
+import { useApplications } from "@/context/ApplicationContext";
+import { useAuth} from "@/context/AuthContext";
 import {
   User,
   Phone,
@@ -13,7 +16,8 @@ import {
 const ApplicationForm = () => {
   const { programmeId } = useParams();
   const { programmes } = useProgrammes();
-
+const { submitApplication } = useApplications();
+const { currentUser } = useAuth();
   const programme = programmes.find(
     (p) => p.id === programmeId
   );
@@ -76,6 +80,7 @@ const ApplicationForm = () => {
       </div>
     );
   }
+
 
   return (
     <div className="bg-slate-100 min-h-screen py-14 px-6">
