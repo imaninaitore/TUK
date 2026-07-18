@@ -181,6 +181,42 @@ const handleStatus = async (status) => {
 
             Reject Application
           </button>
+
+         
+ {/* reject reason  */}
+ 
+     {showRejectBox && (
+
+  <div className="mt-10 bg-red-50 border border-red-300 rounded-xl p-6">
+
+    <h3 className="text-xl font-bold text-red-700 mb-4">
+
+      Rejection Reason
+
+    </h3>
+
+    <textarea
+
+      rows={5}
+
+      value={reason}
+
+      onChange={(e) => setReason(e.target.value)}
+
+      placeholder="Explain why this application is being rejected..."
+
+      className="w-full border rounded-xl p-4"
+
+    />
+
+    <button
+      onClick={() => handleStatus("Rejected")}
+      className="mt-5 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl" >
+      Confirm Rejection
+
+    </button>
+  </div>
+)}
         </div>
       </div>
 
