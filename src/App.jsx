@@ -24,6 +24,8 @@ import Programmes from './components/Programmes'
 import FacultyProgrammes from './pages/FacaultyProgrammes'
 import ApplicantDashboard from './pages/ApplicantsDashboard'
 import ProgrammeDetails from './pages/ProgrammeDetails'
+import ApplicationForm from './pages/ApplicantionForm'
+
 function App() {
   const {isAdmin, userLoggedIn} = useAuth();
   return (
@@ -100,15 +102,25 @@ function App() {
     }
   />
    
-  {/*registered applicant page */}
-  <Route path="/dashboard" element={
+  {/*registered applicant page for form and dashboard*/}
+  <Route path="/dashboard/application/:programmeId" element={
+    userLoggedIn ? (
+      <ApplicationForm />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }/>
+
+  <Route
+  path="/dashboard"
+  element={
     userLoggedIn ? (
       <ApplicantDashboard />
     ) : (
       <Navigate to="/login" />
     )
-  }
-/>
+  }/>
+  
 </Routes> 
   </>
   )
