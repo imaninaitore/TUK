@@ -195,6 +195,10 @@ const updateApplicationStatus = async (applicationId, status) => {
 
         getAllApplications,
 
+        getApplicationById,
+
+        updateApplicationStatus,
+
       }}
 
     >
