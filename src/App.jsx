@@ -26,6 +26,7 @@ import ApplicantDashboard from './pages/ApplicantsDashboard'
 import ProgrammeDetails from './pages/ProgrammeDetails'
 import ApplicationForm from './pages/ApplicantionForm'
 import { useApplications } from './context/ApplicationContext'
+import ViewApplication from './pages/admin/ViewAplication'
 
 function App() {
   const {isAdmin, userLoggedIn,currentUser} = useAuth();
@@ -103,6 +104,18 @@ function App() {
     userLoggedIn &&
     currentUser?.email === "anna.imaninaitore1726@gmail.com" ? (
       <ManageApplications />
+    ) : (
+      <Navigate to="/" />
+    )
+  }
+/>
+
+ <Route
+  path="/admin/applications/:applicationId"
+  element={
+    userLoggedIn &&
+    currentUser?.email === "anna.imaninaitore1726@gmail.com" ? (
+      <ViewApplication />
     ) : (
       <Navigate to="/" />
     )
