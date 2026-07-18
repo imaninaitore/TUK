@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
      
-      <nav className="bg-white shadow-sm">
+<nav className="bg-white shadow-sm">
 
 
  {/* ================= TOP BAR ================= */}
@@ -93,13 +93,7 @@ const Navbar = () => {
 
               <li>
                 <a href="#" className="hover:text-amber-500 transition">
-                  Faculties
-                </a>
-              </li>
-
-              <li>
-                <a href="#" className="hover:text-amber-500 transition">
-                  Programs
+                  Faculties &  Programs
                 </a>
               </li>
 
@@ -163,7 +157,8 @@ const Navbar = () => {
 )}   
         </div>
         </div>
-      </nav>
+
+ </nav>
   );
 };
 
