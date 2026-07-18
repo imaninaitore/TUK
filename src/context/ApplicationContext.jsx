@@ -135,6 +135,38 @@ export const ApplicationProvider = ({ children }) => {
   }
 
 };
+
+const getApplicationById = async (applicationId) => {
+
+  try {
+
+    const docRef = doc(db, "applications", applicationId);
+
+    const snapshot = await getDoc(docRef);
+
+    if (!snapshot.exists()) {
+
+      return null;
+
+    }
+
+    return {
+
+      id: snapshot.id,
+
+      ...snapshot.data(),
+
+    };
+
+  } catch (error) {
+
+    console.error(error);
+
+    return null;
+
+  }
+
+};
   return (
 
     <ApplicationContext.Provider
