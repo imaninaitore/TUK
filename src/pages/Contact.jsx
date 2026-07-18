@@ -102,10 +102,10 @@ function Contact() {
       </section>
 
       {/* Contact Form */}
-      <section className="pb-20">
+      {/* <section className="pb-20">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
 
-          {/* Form */}
+          {/* Form 
           <div className="bg-white rounded-2xl shadow-xl p-8">
 
             <h2 className="text-3xl font-bold text-slate-900">
@@ -151,10 +151,10 @@ function Contact() {
 
             </form>
 
-          </div>
+          </div> */}
 
           {/* Right Side */}
-          <div className="space-y-8">
+          <div className="space-y-8 p-8">
 
             <div className="bg-slate-900 text-white rounded-2xl p-8">
 
@@ -195,7 +195,7 @@ function Contact() {
             </div>
 
             {/* Map Placeholder */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-6">
 
               <div className="bg-slate-200 h-80 flex items-center justify-center">
 
@@ -218,11 +218,9 @@ function Contact() {
 
           </div>
 
-        </div>
-      </section>
 
       {/* CTA */}
-      <section className="bg-slate-900 text-white py-20">
+      <section className="bg-slate-900 text-white py-20 ">
 
         <div className="max-w-5xl mx-auto text-center px-6">
 
