@@ -61,7 +61,7 @@ function Contact() {
                 Email
               </h3>
 
-              <p className="text-gray-600 mt-2">
+              <p className="text-gray-600 mt-2 break-words">
                 admissions@bridgeview.ac.ke
               </p>
             </div>
@@ -197,24 +197,18 @@ function Contact() {
             {/* Map Placeholder */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-6">
 
-              <div className="bg-slate-200 h-80 flex items-center justify-center">
+                  <MapPin className="mx-auto text-blue-900"size={50}/>
 
-                <div className="text-center">
+  <iframe
+    src="https://www.google.com/maps/embed?pb"
+    className="w-full h-80 border-0"
+    loading="lazy"
+    allowFullScreen
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Bridgeview University Location"
+  ></iframe>
+</div>
 
-                  <MapPin
-                    className="mx-auto text-blue-900"
-                    size={50}
-                  />
-
-                  <p className="mt-4 text-gray-600">
-                    Google Map will be embedded here.
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
 
           </div>
 
@@ -234,7 +228,7 @@ function Contact() {
           </p>
 
           <Link
-            to="/study-level"
+            to="/StudyLevel"
             className="inline-block mt-8 bg-amber-400 hover:bg-amber-500 text-slate-900 font-semibold px-8 py-4 rounded-lg transition"
           >
             Apply Now
