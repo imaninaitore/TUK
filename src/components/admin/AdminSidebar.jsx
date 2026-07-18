@@ -121,7 +121,7 @@ const AdminSidebar = () => {
           </p>
 
           <NavLink
-            to="/admin/applications"
+            to="/admin/ManageApplications"
             className={({ isActive }) =>
               `flex items-center gap-4 mx-3 px-4 py-3 rounded-xl transition-all duration-300 mb-6
               ${

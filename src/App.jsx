@@ -25,9 +25,11 @@ import FacultyProgrammes from './pages/FacaultyProgrammes'
 import ApplicantDashboard from './pages/ApplicantsDashboard'
 import ProgrammeDetails from './pages/ProgrammeDetails'
 import ApplicationForm from './pages/ApplicantionForm'
+import { useApplications } from './context/ApplicationContext'
 
 function App() {
-  const {isAdmin, userLoggedIn} = useAuth();
+  const {isAdmin, userLoggedIn,currentUser} = useAuth();
+  const{Applications} = useApplications();
   return (
     <>
     <Routes>
@@ -95,22 +97,17 @@ function App() {
     }
   />
 
-  <Route
-    path="/admin/applications"
-    element={
-      isAdmin ? <Applications /> : <Navigate to="/login" replace />
-    }
-  />
-
-  <Route
-  path="/admin/applications"
+ <Route
+  path="/admin/ManageApplications"
   element={
-    userLoggedIn && currentUser?.role === "admin" ? (
+    userLoggedIn &&
+    currentUser?.email === "anna.imaninaitore1726@gmail.com" ? (
       <ManageApplications />
     ) : (
       <Navigate to="/" />
     )
-  }/>
+  }
+/>
    
   {/*registered applicant page for form and dashboard*/}
   <Route path="/dashboard/application/:programmeId" element={
