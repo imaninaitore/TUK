@@ -154,7 +154,7 @@ const getApplicationById = async (applicationId) => {
   }
 };
 
-const updateApplicationStatus = async (applicationId, status) => {
+const updateApplicationStatus = async (applicationId, status, rejectionReason ="") => {
   try {
     const applicationRef = doc(
       db,
