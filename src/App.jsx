@@ -19,7 +19,7 @@ import ManageEvents from "./pages/admin/ManageEvents";
 import ManageHome from "./pages/admin/ManageHome";
 import ManageAnnouncements from "./pages/admin/ManageAnnouncements";
 import ManageContact from "./pages/admin/ManageContact";
-import Applications from "./pages/admin/Applications";
+import ManageApplications from "./pages/admin/ManageApplications";
 import Programmes from './components/Programmes'
 import FacultyProgrammes from './pages/FacaultyProgrammes'
 import ApplicantDashboard from './pages/ApplicantsDashboard'
@@ -120,7 +120,7 @@ function App() {
       <Navigate to="/login" />
     )
   }/>
-  
+
 </Routes> 
   </>
   )
