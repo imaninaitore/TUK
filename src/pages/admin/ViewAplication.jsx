@@ -175,7 +175,7 @@ const handleStatus = async (status) => {
 
           <button
 
-            onClick={() => handleStatus("Rejected")}
+            onClick={() =>showRejectBox(true)} 
 
             className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl">
 
