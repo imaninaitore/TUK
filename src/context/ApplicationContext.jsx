@@ -34,7 +34,7 @@ export const ApplicationProvider = ({ children }) => {
   // Submit Application
   // ============================
 
-  const submitApplication = async (applicationData) => {
+  const submitApplication = async (applicationData) => { //saves a new document in the applications collections
     try {
       const docRef = await addDoc(applicationsCollection, {
         ...applicationData,

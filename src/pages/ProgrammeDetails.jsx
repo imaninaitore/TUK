@@ -28,7 +28,7 @@ const ProgrammeDetails = () => {
   return (
     <section className="bg-slate-100 min-h-screen py-16">
 
-      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+      <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
 
         {/* Hero */}
 
@@ -154,8 +154,7 @@ const ProgrammeDetails = () => {
 
             <Link
               to={`/dashboard/application/${programme.id}`}
-              className="inline-block bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-bold px-10 py-4 rounded-xl transition"
-            >
+              className="inline-block bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-bold px-10 py-4 rounded-xl transition">
               Apply Now
             </Link>
 

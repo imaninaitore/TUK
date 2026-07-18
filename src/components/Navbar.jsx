@@ -31,7 +31,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-8 text-sm ">
 
-            <a href="#" className="hover:text-amber-400 transition"> Applicant Portal</a>
+            <Link to={'/login'} className="hover:text-amber-400 transition"> Applicant Portal</Link>
 
             <a href="#" className="hover:text-amber-400 transition"> | Students </a>
 
