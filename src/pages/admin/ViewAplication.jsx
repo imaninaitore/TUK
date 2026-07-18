@@ -4,6 +4,9 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { useApplications } from "@/context/ApplicationContext";
 
 const ViewApplication = () => {
+  const [showRejectBox, setShowRejectBox] = useState(false);
+
+const [reason, setReason] = useState("");
 
   const { applicationId } = useParams();
 

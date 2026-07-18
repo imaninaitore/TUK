@@ -165,6 +165,7 @@ const updateApplicationStatus = async (applicationId, status, rejectionReason ="
     await updateDoc(applicationRef, {
 
       status,
+      rejectionReason,
 
     });
 
