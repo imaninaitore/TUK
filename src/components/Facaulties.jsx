@@ -70,12 +70,12 @@ function Faculties() {
 
           {faculties.map((faculty, index) => (
 
-          <Link to={`/faculties/${faculty.slug}`}>  
+          <Link to={`/faculties/${faculty.slug}`}
+          key={faculty.slug}>  
+          
             <div
+              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 cursor-pointer" >
 
-              key={faculty.slug}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 cursor-pointer"
-            >
               {/* Image Placeholder */}
               <div className="h-56 bg-slate-200 overflow-hidden">
                 <img
