@@ -10,8 +10,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  updateDoc,
-  doc,
   query,
   where,
   serverTimestamp,
@@ -24,124 +22,138 @@ export const useApplications = () => {
 };
 
 export const ApplicationProvider = ({ children }) => {
+
   const [application, setApplication] = useState(null);
-  const [applications, setApplications] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
-  const applicationsCollection = collection(db, "applications");
-
-  // ============================
+  // ----------------------------
   // Submit Application
-  // ============================
+  // ----------------------------
 
-  const submitApplication = async (applicationData) => { //saves a new document in the applications collections
-    try {
-      const docRef = await addDoc(applicationsCollection, {
-        ...applicationData,
-        status: "Under Review",
-        submittedAt: serverTimestamp(),
-      });
+  const submitApplication = async (applicationData) => {
 
-      setApplication({
-        id: docRef.id,
-        ...applicationData,
-        status: "Under Review",
-      });
+    const applicationsRef = collection(db, "applications");
 
-      return docRef.id;
-    } catch (error) {
-      console.error("Error submitting application:", error);
-      throw error;
-    }
+    await addDoc(applicationsRef, {
+
+      ...applicationData,
+
+      status: "Under Review",
+
+      submittedAt: serverTimestamp(),
+
+    });
+
   };
 
-  // ============================
-  // Get Logged-in User Application
-  // ============================
+  // ----------------------------
+  // Get Logged In User Application
+  // ----------------------------
 
   const getMyApplication = async (userId) => {
+
+    setLoading(true);
+
     try {
-      setLoading(true);
+
+      const applicationsRef = collection(db, "applications");
 
       const q = query(
-        applicationsCollection,
+
+        applicationsRef,
+
         where("applicantId", "==", userId)
+
       );
 
       const snapshot = await getDocs(q);
 
       if (!snapshot.empty) {
-        const data = {
-          id: snapshot.docs[0].id,
-          ...snapshot.docs[0].data(),
-        };
 
-        setApplication(data);
+        const doc = snapshot.docs[0];
+
+        setApplication({
+
+          id: doc.id,
+
+          ...doc.data(),
+
+        });
+
       } else {
-        setApplication(null);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  // ============================
-  // Admin - Get All Applications
-  // ============================
+        setApplication(null);
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
 
   const getAllApplications = async () => {
-    try {
-      setLoading(true);
 
-      const snapshot = await getDocs(applicationsCollection);
+  setLoading(true);
 
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+  try {
 
-      setApplications(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const applicationsRef = collection(db, "applications");
 
-  // ============================
-  // Admin - Update Status
-  // ============================
+    const snapshot = await getDocs(applicationsRef);
 
-  const updateApplicationStatus = async (id, status) => {
-    try {
-      const applicationRef = doc(db, "applications", id);
+    const applications = snapshot.docs.map((doc) => ({
 
-      await updateDoc(applicationRef, {
-        status,
-      });
+      id: doc.id,
 
-      getAllApplications();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      ...doc.data(),
 
-  const value = {
-    application,
-    applications,
-    loading,
+    }));
 
-    submitApplication,
-    getMyApplication,
-    getAllApplications,
-    updateApplicationStatus,
-  };
+    return applications;
 
+  } catch (error) {
+
+    console.error(error);
+
+    return [];
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+};
   return (
-    <ApplicationContext.Provider value={value}>
+
+    <ApplicationContext.Provider
+
+      value={{
+
+        application,
+
+        loading,
+
+        submitApplication,
+
+        getMyApplication,
+
+      }}
+
+    >
+
       {children}
+
     </ApplicationContext.Provider>
+
   );
+
 };
