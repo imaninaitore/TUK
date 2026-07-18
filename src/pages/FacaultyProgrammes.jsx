@@ -78,7 +78,7 @@ function FacultyProgrammes() {
 
               </div>
 
-             <Link to={'/programmeDetails'}><button
+             <Link to={`/programmes/${programme.id}`}><button
                 className="mt-6 w-full bg-[#0A2342] text-white py-3 rounded-xl hover:bg-[#12355B]">
                 View Details
               </button></Link> 

@@ -47,7 +47,7 @@ function App() {
        <Route path="/login" element={<Login/>} /> 
        <Route path="/programmes" element={<Programmes/>} /> 
        <Route path="/faculties/:faculty" element={<FacultyProgrammes />} /> 
-       <Route path="/programmeDetails" element={<ProgrammeDetails />} /> 
+       <Route path="/programmes/:programmeId" element={<ProgrammeDetails />} /> 
         </Route>
 
       {/* Admin Routes */}

@@ -73,7 +73,7 @@ function Faculties() {
           <Link to={`/faculties/${faculty.slug}`}>  
             <div
 
-              key={index}
+              key={faculty.slug}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 cursor-pointer"
             >
               {/* Image Placeholder */}
