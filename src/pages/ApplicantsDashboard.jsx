@@ -2,10 +2,20 @@ import { Link } from "react-router";
 import { User, GraduationCap, FileText, Clock } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useApplications } from "@/context/ApplicationContext";
+import { useEffect } from "react";
 
 const ApplicantDashboard = () => {
   const { currentUser } = useAuth();
-  const { application } = useApplications();
+  const { application,getMyApplication } = useApplications();
+
+  useEffect(() => {
+
+  if (currentUser) {
+    getMyApplication(currentUser.uid);
+  }
+
+}, [currentUser]);
+
   return(
     <div className="min-h-screen bg-slate-100 py-10 px-6">
 
@@ -86,26 +96,97 @@ const ApplicantDashboard = () => {
 
                 </div>
 
-                <div>
+                <>
+  {application.status === "Under Review" && (
 
-                  <h2 className="text-2xl font-bold text-[#0A2342]">
+    <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-xl p-6">
 
-                    Application Submitted
+      <h2 className="text-2xl font-bold text-yellow-700">
 
-                  </h2>
+        Application Under Review
 
-                  <p className="text-gray-600">
+      </h2>
 
-                    Status:
-                    <span className="font-semibold text-yellow-600 ml-2">
+      <p className="mt-3 text-gray-700">
 
-                      {application.status}
+        Thank you for applying to Bridgeview University.
 
-                    </span>
+        Your application is currently being reviewed by the Admissions Office.
 
-                  </p>
+      </p>
 
-                </div>
+    </div>
+
+  )}
+
+  {application.status === "Accepted" && (
+
+    <div className="bg-green-50 border-l-4 border-green-600 rounded-xl p-6">
+
+      <h2 className="text-2xl font-bold text-green-700">
+
+        🎉 Congratulations!
+
+      </h2>
+
+      <p className="mt-3 text-gray-700">
+
+        You have been offered admission into
+
+      </p>
+
+      <h3 className="text-xl font-bold mt-2 text-[#0A2342]">
+
+        {application.programmeName}
+
+      </h3>
+
+      <button
+        className="mt-8 bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-bold px-8 py-3 rounded-xl"
+      >
+        Download Admission Letter
+      </button>
+
+    </div>
+
+  )}
+
+  {application.status === "Rejected" && (
+
+    <div className="bg-red-50 border-l-4 border-red-600 rounded-xl p-6">
+
+      <h2 className="text-2xl font-bold text-red-700">
+
+        Application Unsuccessful
+
+      </h2>
+
+      <p className="mt-3 text-gray-700">
+
+        Unfortunately, your application was not successful.
+
+      </p>
+
+      <div className="mt-6 bg-white rounded-xl p-5 border">
+
+        <h3 className="font-bold mb-2">
+
+          Reason
+
+        </h3>
+
+        <p>
+
+          {application.rejectionReason}
+
+        </p>
+
+      </div>
+
+    </div>
+
+  )}
+</>
 
               </div>
 
@@ -117,7 +198,7 @@ const ApplicantDashboard = () => {
 
                 </h3>
 
-                <p>{application.programme}</p>
+                <p>{application.programmeName}</p>
 
                 <p className="text-sm text-gray-600">
 
