@@ -65,13 +65,44 @@ const { currentUser } = useAuth();
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log(formData);
+  if (!formData.declaration) {
+    alert("Please accept the declaration before submitting.");
+    return;
+  }
 
-    // Firestore comes next
-  };
+  // Remove file objects for now
+  const {
+    passportPhoto,
+    kcseCertificate,
+    nationalIdFile,
+    ...applicationData
+  } = formData;
+
+  try {
+    await submitApplication({
+      applicantId: currentUser.uid,
+      applicantEmail: currentUser.email,
+
+      programmeId: programme.id,
+      programmeName: programme.name,
+      faculty: programme.faculty,
+      level: programme.level,
+
+      ...applicationData,
+    });
+
+    alert("Application submitted successfully!");
+
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to submit application.");
+  }
+};
 
   if (!programme) {
     return (
