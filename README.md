@@ -12,12 +12,10 @@ Bridgeview University Admissions & Student Portal is a modern web application th
 
 - Home
 - About
-- Faculties
-- Programs
+- Faculties  and programmes
 - Admissions
 - Scholarships
 - Contact
-- FAQ
 - Login
 - Register
 
@@ -118,8 +116,7 @@ http://localhost:5173
 │   ├── assets/          # Images, logos, and icons
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Routed application pages
-│   ├── context/         # Authentication and Theme Context
-│   ├── data/            # Mock JSON data
+│   ├── context/         # Authentication and admin context
 │   ├── App.jsx          # Route configuration
 │   ├── main.jsx         # Application entry point
 │   └── index.css        # Global styles
