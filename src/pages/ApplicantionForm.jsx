@@ -76,7 +76,7 @@ const { currentUser } = useAuth();
     return;
   }
 
-  // Remove file objects for now
+  // file objects
   const {
     passportPhoto,
     kcseCertificate,

@@ -61,7 +61,6 @@ The public website includes:
 - Responsive design for desktop, tablet, and mobile devices
 - Client-side routing using React Router
 - Modern interface built with Tailwind CSS
-- Dark Mode support
 - Reusable React components
 - Interactive dashboards
 - Accessible and intuitive navigation

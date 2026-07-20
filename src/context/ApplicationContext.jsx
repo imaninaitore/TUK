@@ -30,9 +30,7 @@ export const ApplicationProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
 
-  // ----------------------------
   // Submit Application
-  // ----------------------------
 
   const submitApplication = async (applicationData) => {
 
@@ -50,9 +48,7 @@ export const ApplicationProvider = ({ children }) => {
 
   };
 
-  // ----------------------------
   // Get Logged In User Application
-  // ----------------------------
 
   const getMyApplication = async (userId) => {
 

@@ -28,7 +28,7 @@ function RegisterPostgraduate() {
 
     try {
       await register(email, password);
-      navigate("/home");
+      navigate("/home"); 
     } catch (error) {
       setErrorMessage(error.message);
       setIsRegistering(false);
@@ -36,7 +36,7 @@ function RegisterPostgraduate() {
   };
 
   if (userLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace />;//replace is used to maintain login state instead of taking the user back to login
   }
 
   return (
@@ -111,7 +111,7 @@ function RegisterPostgraduate() {
               placeholder="example@email.com"
               value={email}
               onChange={(event)=> {
-                  setEmail(event.target.value);
+                  setEmail(event.target.value); //controlled input
                 }}
                 required
               className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500"

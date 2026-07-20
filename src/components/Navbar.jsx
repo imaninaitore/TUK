@@ -128,7 +128,7 @@ const Navbar = () => {
 
     </div>
 
-{userLoggedIn && (
+{userLoggedIn && !isAdmin && (
   <Link
     to="/dashboard"
     className="bg-[#D4AF37] hover:bg-yellow-500 text-[#0A2342] font-semibold px-5 py-2 rounded-lg transition"

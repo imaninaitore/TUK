@@ -28,9 +28,7 @@ export function ProgrammeProvider({ children }) {
 
   const programmeCollection = collection(db, "programmes");
 
-  // ==========================
   // Load all programmes 
-  // ==========================
 
   const getProgrammes = async () => {
     try {
@@ -53,9 +51,7 @@ export function ProgrammeProvider({ children }) {
     getProgrammes();
   }, []);
 
-  // ==========================
   // Add Programme
-  // ==========================
 
   const addProgramme = async (programme) => {
     try {
@@ -73,9 +69,7 @@ export function ProgrammeProvider({ children }) {
     }
   };
 
-  // ==========================
   // Update Programme
-  // ==========================
 
   const updateProgramme = async (id, updatedProgramme) => {
     try {
@@ -95,9 +89,7 @@ export function ProgrammeProvider({ children }) {
     }
   };
 
-  // ==========================
   // Delete Programme
-  // ==========================
 
   const deleteProgramme = async (id) => {
     try {
